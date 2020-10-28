@@ -3,27 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Inmuebleservicios;
 
-use App\Http\Requests\User as UserRequests;
+use App\Http\Requests\Inmuebleservicios as InmuebleserviciosRequests;
 
-class User extends Controller
+class Inmuebleservicios extends Controller
 {
-        protected $user;
+    protected $inmuebleservicios;
     
-        public function __construct (User $user){
-            $this-$user =$user;
+        public function __construct (Inmuebleservicios $inmuebleservicios){
+            $this-$inmuebleservicios =$inmuebleservicios;
         }
     
     
         public function index()
         {
             //
-            $user = User::all();
+            $inmuebleservicios = Inmuebleservicios::all();
             
             //retorna el array en formato json
-         return response()->json(['user'=> $user]);
-            return $user;
+         return response()->json(['detalle'=> $inmuebleservicios]);
+            return $inmuebleservicios;
         }
     
         /**
@@ -42,13 +42,13 @@ class User extends Controller
          * @param  \Illuminate\Http\Request  $request
          * @return \Illuminate\Http\Response
          */
-        public function store(UserRequests $request)
+        public function store(InmuebleserviciosRequests $request)
         {
             //
           //  return $request;
-            $user =$this->user->create($request->all());
+            $inmuebleservicios =$this->inmuebleservicios->create($request->all());
     
-            return response()->json($user);
+            return response()->json($inmuebleservicios); 
            // return $materia;
           //  return response()->json(new MateriasS($materia), 201);
         }
@@ -61,8 +61,8 @@ class User extends Controller
          */
         public function show($id)
         {
-            $user = User::find($id);
-            return $user;
+            $inmuebleservicios = Inmuebleservicios::find($id);
+            return $inmuebleservicios;
         }
     
         /**
@@ -83,13 +83,13 @@ class User extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function update(UserRequests $request, User $user)
+        public function update(InmuebleserviciosRequests $request, Inmuebleservicios $inmuebleservicios)
         {
             //
             //return $request;
-            $user->update($request->all());
+            $inmuebleservicios->update($request->all());
     
-            return response()->json($user);
+            return response()->json($inmuebleservicios);
     
            // return response()->json(new MateriaRequests($post));
         }
@@ -100,13 +100,11 @@ class User extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function destroy(User $user)
+        public function destroy(Inmuebleservicios $inmuebleservicios)
         {
             //
     
-            $user ->delete();
+            $inmuebleservicios ->delete();
             return response()->json('Eliminacion');
         }
-        
-        
-    }
+}

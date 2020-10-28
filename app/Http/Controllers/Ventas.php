@@ -3,27 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Ventas;
 
-use App\Http\Requests\User as UserRequests;
+use App\Http\Requests\Ventas as VentasRequests;
 
-class User extends Controller
+class Ventas extends Controller
 {
-        protected $user;
+    protected $ventas;
     
-        public function __construct (User $user){
-            $this-$user =$user;
+        public function __construct (Ventas $ventas){
+            $this-$ventas =$ventas;
         }
     
     
         public function index()
         {
             //
-            $user = User::all();
+            $ventas = Ventas::all();
             
             //retorna el array en formato json
-         return response()->json(['user'=> $user]);
-            return $user;
+         return response()->json(['Ventas'=> $ventas]);
+            return $ventas;
         }
     
         /**
@@ -42,13 +42,13 @@ class User extends Controller
          * @param  \Illuminate\Http\Request  $request
          * @return \Illuminate\Http\Response
          */
-        public function store(UserRequests $request)
+        public function store(VentasRequests $request)
         {
             //
           //  return $request;
-            $user =$this->user->create($request->all());
+            $ventas =$this->ventas->create($request->all());
     
-            return response()->json($user);
+            return response()->json($ventas); 
            // return $materia;
           //  return response()->json(new MateriasS($materia), 201);
         }
@@ -61,8 +61,8 @@ class User extends Controller
          */
         public function show($id)
         {
-            $user = User::find($id);
-            return $user;
+            $ventas = Ventas::find($id);
+            return $ventas;
         }
     
         /**
@@ -83,13 +83,13 @@ class User extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function update(UserRequests $request, User $user)
+        public function update(VentasRequests $request, Ventas $ventas)
         {
             //
             //return $request;
-            $user->update($request->all());
+            $ventas->update($request->all());
     
-            return response()->json($user);
+            return response()->json($ventas);
     
            // return response()->json(new MateriaRequests($post));
         }
@@ -100,13 +100,11 @@ class User extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function destroy(User $user)
+        public function destroy(Ventas $ventas)
         {
             //
     
-            $user ->delete();
+            $ventas ->delete();
             return response()->json('Eliminacion');
         }
-        
-        
     }

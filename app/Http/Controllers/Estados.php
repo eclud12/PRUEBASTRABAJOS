@@ -3,27 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 
-use App\Http\Requests\User as UserRequests;
+use App\Estados;
 
-class User extends Controller
+use App\Http\Requests\Estados as EstadosRequests;
+
+class Estados extends Controller
 {
-        protected $user;
+    protected $estados;
     
-        public function __construct (User $user){
-            $this-$user =$user;
+        public function __construct (Estados $estados){
+            $this-$estados =$estados;
         }
     
     
         public function index()
         {
             //
-            $user = User::all();
+            $estados = Estados::all();
             
             //retorna el array en formato json
-         return response()->json(['user'=> $user]);
-            return $user;
+         return response()->json(['detalle'=> $estados]);
+            return $estados;
         }
     
         /**
@@ -42,13 +43,13 @@ class User extends Controller
          * @param  \Illuminate\Http\Request  $request
          * @return \Illuminate\Http\Response
          */
-        public function store(UserRequests $request)
+        public function store(EstadosRequests $request)
         {
             //
           //  return $request;
-            $user =$this->user->create($request->all());
+            $estados =$this->estados->create($request->all());
     
-            return response()->json($user);
+            return response()->json($estados); 
            // return $materia;
           //  return response()->json(new MateriasS($materia), 201);
         }
@@ -61,8 +62,8 @@ class User extends Controller
          */
         public function show($id)
         {
-            $user = User::find($id);
-            return $user;
+            $estados = Estados::find($id);
+            return $estados;
         }
     
         /**
@@ -83,13 +84,13 @@ class User extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function update(UserRequests $request, User $user)
+        public function update(EstadosRequests $request, Estados $estados)
         {
             //
             //return $request;
-            $user->update($request->all());
+            $estados->update($request->all());
     
-            return response()->json($user);
+            return response()->json($estados);
     
            // return response()->json(new MateriaRequests($post));
         }
@@ -100,13 +101,11 @@ class User extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function destroy(User $user)
+        public function destroy(Estados $estados)
         {
             //
     
-            $user ->delete();
+            $estados ->delete();
             return response()->json('Eliminacion');
         }
-        
-        
-    }
+}
